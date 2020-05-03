@@ -1,6 +1,8 @@
 import time
 import sys
 import tensorflow as tf
+# import tensorflow.compat.v1 as tf
+# tf.disable_v2_behavior()
 import numpy as np
 from tqdm import tqdm
 import rnn_rbm
@@ -31,7 +33,7 @@ def main(num_epochs):
     gvs = [(tf.clip_by_value(grad, -10., 10.), var) for grad, var in gvs] #We use gradient clipping to prevent gradients from blowing up during training
     updt = opt_func.apply_gradients(gvs)#The update step involves applying the clipped gradients to the model parameters
 
-    songs = midi_manipulation.get_songs('Pop_Music_Midi') #Load the songs 
+    songs = midi_manipulation.get_songs('Horror_Music_Midi') #Load the songs
 
     saver = tf.train.Saver(tvars) #We use this saver object to restore the weights of the model and save the weights every few epochs
     with tf.Session() as sess:

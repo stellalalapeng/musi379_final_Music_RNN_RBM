@@ -1,4 +1,6 @@
 import tensorflow as tf
+# import tensorflow.compat.v1 as tf
+# tf.disable_v2_behavior()
 import numpy as np
 from tqdm import tqdm
 import RBM
@@ -15,7 +17,7 @@ lr = 0.01 #The learning rate for the RBM
 
 def main():
 	#Load the Songs
-	songs = midi_manipulation.get_songs('Pop_Music_Midi')
+	songs = midi_manipulation.get_songs('Horror_Music_Midi')
 
 
 	x  = tf.placeholder(tf.float32, [None, rnn_rbm.n_visible], name="x") #The placeholder variable that holds our data
@@ -43,7 +45,7 @@ def main():
 	#Run the session
 	with tf.Session() as sess:
 		#Initialize the variables of the model
-	    init = tf.initialize_all_variables()
+	    init = tf.global_variables_initializer()
 	    sess.run(init)
 
 	    #Run over each song num_epoch times
